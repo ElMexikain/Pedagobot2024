@@ -1,15 +1,15 @@
 #ifndef Deplacement_h
 #define Deplacement_h
-#include "Arduino.h"
-class Deplacement {
-  public:
-      Deplacement(double dist; double ang);
-      void avancer(double dist);
-      void tourner(double ang);
-}  
-  private:
-      double distance;
-      double angle;
-      
+#include "Arduino.h" 
+#include "math.h"
+
+class Deplacement(){		
+public:
+        void init(int vitesse);
+        void avancer(int distance);
+        void reculer(int distance);
+        void tourner_gauche(int angle);
+        void tourner_droite(int angle);
+private:
 };
 #endif
