@@ -14,8 +14,10 @@ Servo Stylo;
 Stylo.attach(10);
 
 void cercle(float rayon){
-    int distance = 
+    int distance = abs(2*M_PI*rayon)
     int temps = abs(1000*distance/2); //en milisecondes
+	descendre_stylo1();
+    if(distance >0){
     // le moteur droit tourne vers l'avant
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
@@ -23,6 +25,9 @@ void cercle(float rayon){
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW)
     delay(temps);
+    }
+position_intermediaire();
+}
     
 void polygone_regulier(int Nbcôté, float longueur){
     for (int i = 0; i < NbCôté; i++){									// Pour chacun des côtés,
@@ -59,8 +64,9 @@ void pavage_heptagone(float longueur){
 
 
 void pavage_cercle(float rayon){
-  for(int i=0;i<4;i++){
-    avancer(longueur);
-    tournerGauche(79);
+	for(int i=0;i<4;i++){
+	  cercle(rayon);
+	  tournerDroite(90);
+	  avancer(2*rayon);
   }
 }
