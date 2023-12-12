@@ -8,8 +8,7 @@ void setup() {
   pinMode(moteur_droite_pin2,OUTPUT);
   pinMode(moteur_gauche_pin1,OUTPUT);
   pinMode(moteur_gauche_pin2,OUTPUT);
-  int triangle.distance = Serial.parseInt();
-  int triangle.angle = Serial.parseInt();
+  int triangle.distance = x;
   Serial.begin(9600); 
 }
  void pavageTriangle(){
