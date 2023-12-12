@@ -1,0 +1,49 @@
+const int moteur_droite_pin1 = 7;
+const int moteur_droite_pin2 = 6;
+const int moteur_gauche_pin1 = 8;
+const int moteur_gauche_pin2 = 9;
+
+void setup() {
+  pinMode(moteur_droite_pin1,OUTPUT);
+  pinMode(moteur_droite_pin2,OUTPUT);
+  pinMode(moteur_gauche_pin1,OUTPUT);
+  pinMode(moteur_gauche_pin2,OUTPUT);
+  int triangle.distance = Serial.parseInt();
+  int triangle.angle = Serial.parseInt();
+  Serial.begin(9600); 
+}
+ void pavageTriangle(){
+  triangle.tourner(60)
+  triangle.avancer(x)
+  triangle.tourner(-60)
+  for (int i=0; i<n//2; i++){ 
+      triangle.avancer((n-i)*x);
+      triangle.tourner(-120);
+      triangle.avancer(i*x);
+      triangle.tourner(-120);
+      triangle.avancer((n-i)*x);
+      if (n%2==0 and i==n//2){
+        triangle.tourner(-60);
+        triangle.avancer(x);
+        }
+      else{
+        triangle.tourner(-120);
+        triangle.avancer(i*x);
+        triangle.tourner(-120);
+        triangle.avancer((n-i)*x);
+        triangle.tourner(-120);
+        triangle.avancer(i*x);
+        triangle.tourner(-60);
+        triangle.avancer(x);
+        triangle.tourner(-60);
+      }
+if (n%2==1){
+  triangle.tourner(60)
+  triangle.avancer((n-1)//2*x)
+  triangle.tourner(-120)
+  triangle.avancer(n*x)
+  triangle.tourner(-120)
+  triangle.avancer(n*x)
+  }
+}
+
