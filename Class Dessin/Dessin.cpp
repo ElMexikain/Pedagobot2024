@@ -70,3 +70,42 @@ void pavage_cercle(float rayon){
 	  avancer(2*rayon);
   }
 }
+void pavage_triangle(float longueur, int répétitions){
+	tournerDroite(60);
+	avancer(longueur);
+	tournerGauche(60);
+	for (int i=0;i<répétitons/2;i++){
+		avancer((répétitons-i)*longueur);
+		TournerGauche(120);
+		avancer(i*longueur);
+		TournerGauche(120);
+		avancer((répétitions-i)*longueur);
+		if(répétitions%2 ==0 and i==n/2){
+			TournerGauche(120);
+			avancer(longueur);
+			}
+		else{
+			TournerGauche(120);
+			avancer(i*longueur);
+			TournerGauche(120);
+			avancer((répétitions-i)*longueur);
+			TournerGauche(120);
+			avancer(i*longueur);
+			TournerGauche(60);
+			avancer(longueur);
+			TournerGauche(60);
+		}
+		if (n%2==1){
+			TournerDroite(60);
+			avancer((répétitions-1)/2*longueur);
+			TournerGauche(120);
+			avancer(longueur);
+			TournerGauche(120);
+			avancer(longueur);
+			}
+	}
+}
+			
+			
+	
+			
