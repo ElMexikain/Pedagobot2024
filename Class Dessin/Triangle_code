@@ -1,3 +1,9 @@
+#include "Deplacement.h"
+#include "Arduino.h"
+#include "Dessin.h"
+#include "Servo.h"
+#include "math.h"
+
 const int moteur_droite_pin1 = 7;
 const int moteur_droite_pin2 = 6;
 const int moteur_gauche_pin1 = 8;
@@ -23,7 +29,7 @@ void setup() {
       if (n%2==0 and i==n//2){
         triangle.tourner(-60);
         triangle.avancer(x);
-        }
+      }
       else{
         triangle.tourner(-120);
         triangle.avancer(i*x);
@@ -35,13 +41,14 @@ void setup() {
         triangle.avancer(x);
         triangle.tourner(-60);
       }
-if (n%2==1){
-  triangle.tourner(60)
-  triangle.avancer((n-1)//2*x)
-  triangle.tourner(-120)
-  triangle.avancer(n*x)
-  triangle.tourner(-120)
-  triangle.avancer(n*x)
+  }
+  if (n%2==1){
+    triangle.tourner(60)
+    triangle.avancer((n-1)//2*x)
+    triangle.tourner(-120)
+    triangle.avancer(n*x)
+    triangle.tourner(-120)
+    triangle.avancer(n*x)
   }
 }
 
