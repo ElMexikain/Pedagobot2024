@@ -83,7 +83,7 @@ void pavage_triangle(float longueur, int répétitions){
 		if(répétitions%2 ==0 and i==n/2){
 			TournerGauche(120);
 			avancer(longueur);
-			}
+		}
 		else{
 			TournerGauche(120);
 			avancer(i*longueur);
@@ -95,14 +95,14 @@ void pavage_triangle(float longueur, int répétitions){
 			avancer(longueur);
 			TournerGauche(60);
 		}
-		if (n%2==1){
-			TournerDroite(60);
-			avancer((répétitions-1)/2*longueur);
-			TournerGauche(120);
-			avancer(longueur);
-			TournerGauche(120);
-			avancer(longueur);
-			}
+	}
+	if (n%2==1){
+		TournerDroite(60);
+		avancer((répétitions-1)/2*longueur);
+		TournerGauche(120);
+		avancer(longueur);
+		TournerGauche(120);
+		avancer(longueur);
 	}
 }
 			
