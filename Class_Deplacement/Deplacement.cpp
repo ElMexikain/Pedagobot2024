@@ -1,14 +1,16 @@
 #include "Deplacement.h"
 #include "Arduino.h"
 #include "math.h"
-
 // Moteur Droit
-int in4 = 6;
-int in3 = 7;
+const int  in4 = 6;//Broche sens anti-horaire
+const int in3 = 7;//Broche sens horaire
 // Moteur Gauche
-int in2 = 8;
-int in1 = 9;
-
+const int in2 = 8;//Broche sens anti-horaire
+const int in1 = 9;//Broche sens horaire
+const int trigPin = 11; // Trigger (emission)
+const int echoPin = 12; // Echo (réception)
+long temps;
+float distance;
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
   pinMode(in2,OUTPUT);
@@ -79,4 +81,20 @@ void Deplacement::tourner_gauche(int angle){
 
 void Deplacement::tourner_droite(int angle){
   tourner_gauche(-angle);
+}
+
+void Deplacement::calculDistance(){
+// Émission d'un signal de durée 10 microsecondes
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+ 
+// Écoute de l'écho
+temps = pulseIn(echoPin, HIGH);
+// Calcul de la distance
+distance = pow(temps*0.034-h*h,0.5)/2;
+// Affichage de la distance dans le Moniteur Série
+Serial.println("Distance: ");
+Serial.println(distance);
+Serial.println(" cm");
 }
