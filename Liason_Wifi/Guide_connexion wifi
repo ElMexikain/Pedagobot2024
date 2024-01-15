@@ -1,0 +1,5 @@
+Comment connecter la carte ESP32 au réseau?
+Tout d'abord, il faut téléverser le programmer "Connexion_Wifi.ino" tout en veillant 
+à modifier le mot de passe et le nom du réseau.
+Ensuite, il faut sélectionner dans Outils/Port le port réseau.
+Il suffit ensuite de téléverser le code que l'on veut exécuter.
