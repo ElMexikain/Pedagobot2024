@@ -1,6 +1,7 @@
 #include "Deplacement.h"
 #include "Arduino.h"
-
+#include "ArduinoOTA.h"
+#include "WiFi.h"
 
 // Moteur Droit
 int in4 = D5;
