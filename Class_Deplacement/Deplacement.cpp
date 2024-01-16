@@ -92,7 +92,8 @@ void Deplacement::tourner_droite(int angle){
   tourner_gauche(-angle);
 }
 
-void Deplacement::calculDistance(){
+double Deplacement::calculDistance(){
+double distance;
 // Émission d'un signal de durée 10 microsecondes
 digitalWrite(trigPin, HIGH);
 delayMicroseconds(10);
@@ -106,6 +107,7 @@ distance = pow(temps*0.034-h*h,0.5)/2;
 Serial.println("Distance: ");
 Serial.println(distance);
 Serial.println(" cm");
+return distance;
 }
 void Deplacement::initOTA() {
   // Port defaults to 3232
