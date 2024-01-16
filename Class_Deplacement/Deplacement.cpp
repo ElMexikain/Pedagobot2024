@@ -149,3 +149,8 @@ void Deplacement::initOTA() {
 
   ArduinoOTA.begin();
 }
+void Deplacement::mesureDeVide(){
+if (calculDistance()<=3){
+avancer(0);
+}
+}
