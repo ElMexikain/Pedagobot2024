@@ -14,6 +14,7 @@ public:
         void tourner_droite(int angle);
         void calculDistance();
         void iniOTA();
+        void mesureDeVide();
 private:
 };
 #endif
