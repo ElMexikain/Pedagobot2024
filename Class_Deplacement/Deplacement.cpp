@@ -9,6 +9,7 @@ int in3 = D6;
 // Moteur Gauche
 int in2 = D3;
 int in1 = D2;
+double h = 10;
 
 const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
