@@ -23,7 +23,7 @@ void servomoteur::init()
   ESP32PWM::allocateTimer(2);
   ESP32PWM::allocateTimer(3);
   myservo.setPeriodHertz(50);
-  myservo.attach(A0,1000,2000);//attaché notre objet myservo au servomoteur branché sur la broche 2
+  myservo.attach(A0,1000,2000);//attaché notre objet myservo au servomoteur branché sur la broche A0
 }
 
 
