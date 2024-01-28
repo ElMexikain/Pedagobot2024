@@ -1,6 +1,6 @@
 #include "Arduino.h" 
 #include "math.h"
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 class servomoteur{
 public :
