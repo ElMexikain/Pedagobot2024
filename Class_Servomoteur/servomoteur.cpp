@@ -1,7 +1,7 @@
 #include "servomoteur.h"
 #include "Arduino.h" 
 #include "math.h"
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Servo myservo; //créer un objet appelé myservo à partir du module Servo
 
@@ -12,19 +12,17 @@ int buttonState=0; //variable qui sera utilisée pour stocker l'état du button
 
 //initialisationdes constantes
 const int buttonPin=2; //numéro de la broche à laquelle est connectée le bouton poussoir
-//const int ledVertPin=3; //numéro de la broche à laquelle est connectée la led verte
-//const int ledJaunePin=4; //numéro de la broche à laquelle est connectée la led jaune
-//const int ledRougePin=5; //numéro de la broche à laquelle est connectée la led rouge
+
 
 
 void servomoteur::init()
 {
-  //pinMode(ledVertePin,OUTPUT); //indique que la broche ledVertePin est en sortie
-  //pinMode(ledJaunePin,OUTPUT); //indique que la broche ledJaunePin est en sortie
-  //pinMode(ledRougePin,OUTPUT); //indique que la broche ledRougePin est en sortie
-  //pinMode(buttonPin,INPUT); //indique que la broche buttonPin est en entrée
-  buttonState=digitalRead(buttonPin);//lecture de l'état de buttonPin et stocke sa valeur dans buttonState
-  myservo.attach(9);//attaché notre objet myservo au servomoteur branché sur la broche 9
+  ESP32PWM::allocateTimer(0);
+  ESP32PWM::allocateTimer(1);
+  ESP32PWM::allocateTimer(2);
+  ESP32PWM::allocateTimer(3);
+  myservo.setPeriodHertz(50);
+  myservo.attach(2,1000,2000);//attaché notre objet myservo au servomoteur branché sur la broche 2
 }
 
 
