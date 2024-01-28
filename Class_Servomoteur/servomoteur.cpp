@@ -16,7 +16,8 @@ const int buttonPin=2; //numéro de la broche à laquelle est connectée le bout
 //const int ledJaunePin=4; //numéro de la broche à laquelle est connectée la led jaune
 //const int ledRougePin=5; //numéro de la broche à laquelle est connectée la led rouge
 
-void setup()
+
+void servomoteur::init()
 {
   //pinMode(ledVertePin,OUTPUT); //indique que la broche ledVertePin est en sortie
   //pinMode(ledJaunePin,OUTPUT); //indique que la broche ledJaunePin est en sortie
@@ -27,7 +28,7 @@ void setup()
 }
 
 
-void stylo_1()
+void servomoteur::stylo_1()
 {
   
   //digitalWrite(ledVertePin,HIGH);//On allume la led Verte
@@ -50,7 +51,7 @@ void stylo_1()
   
 }
  
-void stylo_2()
+void servomoteur::stylo_2()
 {
   
   //digitalWrite(ledRougePin,HIGH);//On allume la led Rouge
@@ -73,7 +74,7 @@ void stylo_2()
   
 }
 
-void non_stylo()
+void servomoteur::non_stylo()
 {
   
   //digitalWrite(ledJaunePin,HIGH);//On allume la led Jaune
