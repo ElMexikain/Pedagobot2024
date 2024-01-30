@@ -1,7 +1,7 @@
 #include "Deplacement.h"
 #include "Arduino.h"
-#include "ArduinoOTA.h"
-#include "WiFi.h"
+//#include "ArduinoOTA.h"
+//#include "WiFi.h"
 
 // Moteur Droit
 int in4 = D5;
@@ -110,7 +110,7 @@ Serial.println(distance);
 Serial.println(" cm");
 return distance;
 }
-void Deplacement::initOTA() {
+/* void Deplacement::initOTA() {
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
 
@@ -151,7 +151,7 @@ void Deplacement::initOTA() {
   });
 
   ArduinoOTA.begin();
-}
+}*/
 void Deplacement::mesureDeVide(){
 if (calculDistance()<=3){
 avancer(0);
