@@ -9,9 +9,9 @@ Servo myservo; //créer un objet appelé myservo à partir du module Servo
 double vitesseCCW=26;//vitesse clock wise
 double vitesseCW=-26;//vitesse counter clockcwise
 double zero=0; // on défini un zéro :)
-double stop=map(zero,-100,100,0,180); on redéfini le zéro sur la plage 0, 180 du servo
-double vitesse_adjCCW=map(vitesseCCW,-100,100,0,180);on redéfini la vitesse CCW sur la plage 0, 180 du servo
-double vitesse_adjCW=map(vitesseCW,-100,100,0,180);on redéfini la vitesse CCW sur la plage 0, 180 du servo
+double stop=map(zero,-100,100,0,180); //on redéfini le zéro sur la plage 0, 180 du servo
+double vitesse_adjCCW=map(vitesseCCW,-100,100,0,180);//on redéfini la vitesse CCW sur la plage 0, 180 du servo
+double vitesse_adjCW=map(vitesseCW,-100,100,0,180);//on redéfini la vitesse CCW sur la plage 0, 180 du servo
 double angle=180; //angle demandé en degrés
 double coeff= 5.9;//nb secondes par degré pour une vitesse de 26
 double temps = angle*coeff; // temps nécessaire pour tourner de l'angle défini
