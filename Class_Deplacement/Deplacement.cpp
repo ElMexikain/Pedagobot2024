@@ -4,8 +4,8 @@
 //#include "WiFi.h"
 
 // Moteur Droit
-int in4 = D5;
-int in3 = D6;
+int in4 = D6;
+int in3 = D5;
 // Moteur Gauche
 int in2 = D3;
 int in1 = D2;
@@ -13,12 +13,9 @@ double h = 10;
 
 const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
-long temps;
-float distance;
-
 //Valeur pour tourner a la bonne vitesse
 const int val = 50;
-const int vitesse = 7 * M_PI * 1.23 * 10 / 42;
+const int vitesse = 1 / M_PI ;
 
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
@@ -73,7 +70,7 @@ void Deplacement::tourner_gauche(int angle){
     // Le moteur droit tourne vers l'avant
     analogWrite(in3,0);
     analogWrite(in4,val);
-    delay(temps);
+    delay(2*temps);
   }
   else{
     // de même mais dans l'autre sens
@@ -93,7 +90,7 @@ void Deplacement::tourner_droite(int angle){
   tourner_gauche(-angle);
 }
 
-double Deplacement::calculDistance(){
+/*double Deplacement::calculDistance(){
 double distance;
 // Émission d'un signal de durée 10 microsecondes
 digitalWrite(trigPin, HIGH);
@@ -109,8 +106,8 @@ Serial.println("Distance: ");
 Serial.println(distance);
 Serial.println(" cm");
 return distance;
-}
-/* void Deplacement::initOTA() {
+}*/
+/*void Deplacement::initOTA() {
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
 
@@ -152,8 +149,9 @@ return distance;
 
   ArduinoOTA.begin();
 }*/
-void Deplacement::mesureDeVide(){
+/*void Deplacement::mesureDeVide(){
 if (calculDistance()<=3){
 avancer(0);
 }
-}
+}*/
+
