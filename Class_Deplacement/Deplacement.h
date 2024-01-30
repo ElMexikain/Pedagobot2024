@@ -2,8 +2,8 @@
 #define Deplacement_h
 #include "Arduino.h" 
 #include "math.h"
-#include "ArduinoOTA.h"
-#include "WiFi.h
+//#include "ArduinoOTA.h"
+//#include "WiFi.h
 
 class Deplacement{		
 public:
@@ -13,7 +13,7 @@ public:
         void tourner_gauche(int angle);
         void tourner_droite(int angle);
         void calculDistance();
-        void iniOTA();
+        //void iniOTA();
         void mesureDeVide();
 private:
 };
