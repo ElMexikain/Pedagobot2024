@@ -4,8 +4,8 @@
 //#include "WiFi.h"
 
 // Moteur Droit
-int in4 = D6;
-int in3 = D5;
+int in4 = D5;
+int in3 = D6;
 // Moteur Gauche
 int in2 = D3;
 int in1 = D2;
@@ -14,8 +14,8 @@ double h = 10;
 const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
 //Valeur pour tourner a la bonne vitesse
-const int val = 50;
-const double vitesse = 1 / M_PI ;
+const int val = 60;
+const double vitesse = 2.9;
 
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
@@ -29,20 +29,20 @@ void Deplacement::avancer(int distance){
   int temps = abs(distance * 1000 / vitesse); //en milisecondes
   if (distance > 0){
     // Le moteur gauche tourne vers l'avant
-    analogWrite(in1, 0);
-    analogWrite(in2, val);
+    analogWrite(in1, val);
+    analogWrite(in2, 0);
     // Le moteur droit tourne vers l'avant
-    analogWrite(in3, 0);
-    analogWrite(in4, val);
+    analogWrite(in3, val);
+    analogWrite(in4, 0);
     delay(temps);
   }
   else{
     // Le moteur gauche tourne vers l'arrière
-    analogWrite(in1, val);
-    analogWrite(in2, 0);
+    analogWrite(in1, 0);
+    analogWrite(in2, val);
     // Le moteur droit tourne vers l'arrière
-    analogWrite(in3, val);
-    analogWrite(in4, 0);
+    analogWrite(in3, 0);
+    analogWrite(in4, val);
     delay(temps);
   }
   analogWrite(in1, 0);
@@ -154,4 +154,3 @@ if (calculDistance()<=3){
 avancer(0);
 }
 }*/
-
