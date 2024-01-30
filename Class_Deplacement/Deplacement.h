@@ -12,7 +12,7 @@ public:
         void reculer(int distance);
         void tourner_gauche(int angle);
         void tourner_droite(int angle);
-        void calculDistance();
+        double calculDistance();
         //void iniOTA();
         void mesureDeVide();
 private:
