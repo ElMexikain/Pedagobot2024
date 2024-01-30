@@ -15,7 +15,7 @@ const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
 //Valeur pour tourner a la bonne vitesse
 const int val = 50;
-const int vitesse = 1 / M_PI ;
+const double vitesse = 1 / M_PI ;
 
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
