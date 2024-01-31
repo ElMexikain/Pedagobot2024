@@ -65,17 +65,17 @@ void Deplacement::tourner_gauche(int angle){
   int temps = abs(dist/vitesse) * 1000; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
   if (angle > 0){
     // La moteur gauche tourne vers l'arrière
-    analogWrite(in1,val);
+    analogWrite(in1,val+10);
     analogWrite(in2,0);
     // Le moteur droit tourne vers l'avant
     analogWrite(in3,0);
     analogWrite(in4,val);
-    delay(2*temps);
+    delay(temps);
   }
   else{
     // de même mais dans l'autre sens
     analogWrite(in1,0);
-    analogWrite(in2,val);
+    analogWrite(in2,val+10);
     analogWrite(in3,val);
     analogWrite(in4,0);
     delay(temps);
@@ -154,3 +154,4 @@ if (calculDistance()<=3){
 avancer(0);
 }
 }*/
+
