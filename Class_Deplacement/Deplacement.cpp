@@ -16,7 +16,7 @@ const int echoPin = 12; // Echo (réception)
 //Valeur pour tourner a la bonne vitesse
 const int val = 50;
 const int correction = 5;
-const double corr_angle = 0.36;
+const double corr_angle = 0.41;
 const double vitesse = 8.4;
 
 void Deplacement::init(){
