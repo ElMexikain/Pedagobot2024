@@ -3,10 +3,10 @@
 //#include "ArduinoOTA.h"
 //#include "WiFi.h"
 
-// Moteur Droit
+// Moteur Gauche
 int in4 = D5;
 int in3 = D6;
-// Moteur Gauche
+// Moteur Droit
 int in2 = D3;
 int in1 = D2;
 double h = 10;
@@ -14,8 +14,10 @@ double h = 10;
 const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
 //Valeur pour tourner a la bonne vitesse
-const int val = 60;
-const double vitesse = 2.9;
+const int val = 50;
+const int correction = 5;
+const double corr_angle = 0.36;
+const double vitesse = 8.4;
 
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
@@ -32,7 +34,7 @@ void Deplacement::avancer(int distance){
     analogWrite(in1, val);
     analogWrite(in2, 0);
     // Le moteur droit tourne vers l'avant
-    analogWrite(in3, val);
+    analogWrite(in3, val+correction);
     analogWrite(in4, 0);
     delay(temps);
   }
@@ -42,7 +44,7 @@ void Deplacement::avancer(int distance){
     analogWrite(in2, val);
     // Le moteur droit tourne vers l'arrière
     analogWrite(in3, 0);
-    analogWrite(in4, val);
+    analogWrite(in4, val+correction);
     delay(temps);
   }
   analogWrite(in1, 0);
@@ -60,23 +62,24 @@ void Deplacement::tourner_gauche(int angle){
   // Un peu difficle de savoir si le stylo restera effectivement immobile durant la rotation
   // angle en degré
   int diam = 23; //distance entre les roues en cm
-  double ang_rad = abs(angle*2*M_PI/360);
-  double dist = diam/2 * ang_rad;
-  int temps = abs(dist/vitesse) * 1000; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
+  double ang_rad = abs(angle * (1 + corr_angle)*2*M_PI/360);
+  double dist = diam/2 * ang_rad; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
+  int temps = abs(dist/vitesse) * 1000; 
+  Serial.println(temps);
   if (angle > 0){
     // La moteur gauche tourne vers l'arrière
-    analogWrite(in1,val+10);
+    analogWrite(in1,val);
     analogWrite(in2,0);
     // Le moteur droit tourne vers l'avant
     analogWrite(in3,0);
-    analogWrite(in4,val);
+    analogWrite(in4,val+correction);
     delay(temps);
   }
   else{
     // de même mais dans l'autre sens
     analogWrite(in1,0);
-    analogWrite(in2,val+10);
-    analogWrite(in3,val);
+    analogWrite(in2,val);
+    analogWrite(in3,val+correction);
     analogWrite(in4,0);
     delay(temps);
   }
