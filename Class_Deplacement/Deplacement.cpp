@@ -16,8 +16,8 @@ const int echoPin = 12; // Echo (réception)
 //Valeur pour tourner a la bonne vitesse
 const int val = 50;
 const int correction = 5;
-const double corr_angle = 0.41;
-const double vitesse = 8.4;
+const double corr_angle = 0.23;
+const double vitesse = 7.9;
 
 void Deplacement::init(){
   pinMode(in1,OUTPUT);
@@ -63,7 +63,7 @@ void Deplacement::tourner_gauche(int angle){
   // angle en degré
   int diam = 23; //distance entre les roues en cm
   double ang_rad = abs(angle * (1 + corr_angle)*2*M_PI/360);
-  double dist = diam/2 * ang_rad; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
+  double dist = diam * ang_rad / 2; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
   int temps = abs(dist/vitesse) * 1000; 
   Serial.println(temps);
   if (angle > 0){
@@ -157,4 +157,3 @@ if (calculDistance()<=3){
 avancer(0);
 }
 }*/
-

@@ -12,8 +12,20 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   (*test).avancer(10);
-  delay(5000);
-  (*test).tourner_gauche(180);
-  delay(5000);
+  delay(100);
+  (*test).tourner_gauche(90);
+  delay(100);
+  (*test).avancer(10);
+  delay(100);
+  (*test).tourner_gauche(90);
+  delay(100);
+  (*test).avancer(10);
+  delay(100);
+  (*test).tourner_gauche(90);
+  delay(100);
+  (*test).avancer(10);
+  delay(100);
+  (*test).tourner_gauche(90);
+  delay(10000);
 
 }
