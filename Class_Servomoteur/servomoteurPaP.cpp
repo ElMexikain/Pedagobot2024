@@ -16,6 +16,8 @@ double angle=180; //angle demandé en degrés
 double coeff= 5.9;//nb secondes par degré pour une vitesse de 26
 double temps = angle*coeff; // temps nécessaire pour tourner de l'angle défini
 int pos=0;//position du servomoteur
+
+
 void servomoteur::init()
 {
   ESP32PWM::allocateTimer(0);
