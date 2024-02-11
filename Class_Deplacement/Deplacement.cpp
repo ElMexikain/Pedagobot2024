@@ -3,97 +3,66 @@
 //#include "ArduinoOTA.h"
 //#include "WiFi.h"
 
-// Moteur Gauche
-int in4 = D5;
-int in3 = D6;
-// Moteur Droit
-int in2 = D3;
-int in1 = D2;
-double h = 10;
 
-const int trigPin = 11; // Trigger (emission)
-const int echoPin = 12; // Echo (réception)
-//Valeur pour tourner a la bonne vitesse
-const int val = 50;
-const int correction = 5;
-const double corr_angle = 0.23;
-const double vitesse = 7.9;
+double h = 10;
+double temps;
+
+const int stepsPerRevolution	=	64 * 64 / 2;	// Nombre de pas par tour de
+const float	PERIMETER	=	M_PI * 8;
+Stepper stepperLeft = Stepper(stepsPerRevolution, 10, 12, 11, 13);	// sert à contrôler le moteur pas-à-pas de gauche, branché des broches 10 à 13
+Stepper stepperRight = Stepper(stepsPerRevolution, 2, 4, 3, 5);	 // sert à contrôler le moteur pas-à-pas de droite, branché des broches 2 à 5
 
 void Deplacement::init(){
-  pinMode(in1,OUTPUT);
-  pinMode(in2,OUTPUT);
-  pinMode(in3,OUTPUT);
-  pinMode(in4,OUTPUT);
+  vitesse(10);
 }
 
-void Deplacement::avancer(int distance){
+int Deplacement::distanceToStep(double distance) {
+	return (int)(distance / PERIMETER * stepsPerRevolution);
+}
+
+void Deplacement::vitesse(int v) {
+  // Permet d'attribuer la vitesse v aux moteurs
+	stepperRight.setSpeed(v);											// Les moteurs pas à pas gauche
+	stepperLeft.setSpeed(v);											// et droite prennent la même valeur de vitesse donnée.
+}
+
+void Deplacement::avancer(double distance){
   // Le robot avance pendant la durée lui permettant de parcourir <distance> cm 
-  int temps = abs(distance * 1000 / vitesse); //en milisecondes
-  if (distance > 0){
-    // Le moteur gauche tourne vers l'avant
-    analogWrite(in1, val);
-    analogWrite(in2, 0);
-    // Le moteur droit tourne vers l'avant
-    analogWrite(in3, val+correction);
-    analogWrite(in4, 0);
-    delay(temps);
+	int steps = distanceToStep(fabs(distance));							// On convertit la distance en nombre de pas à faire;
+	int sens = 1;														// et on met le sens par défaut vers l'avant.
+	if (distance < 0) {													// Si la distance est négative,
+		sens = -1;														// on met le sens vers l'arrière.
+	}
+
+	for (int i = 0; i < steps; i++) {									// On fait tous les pas à réaliser un par un :
+		stepperRight.step(sens);										// la roue gauche d'abord,
+		stepperLeft.step(-sens);										// la droite ensuite.
+	}
   }
-  else{
-    // Le moteur gauche tourne vers l'arrière
-    analogWrite(in1, 0);
-    analogWrite(in2, val);
-    // Le moteur droit tourne vers l'arrière
-    analogWrite(in3, 0);
-    analogWrite(in4, val+correction);
-    delay(temps);
-  }
-  analogWrite(in1, 0);
-  analogWrite(in2, 0);
-  analogWrite(in3, 0);
-  analogWrite(in4, 0);
 }
 
-void Deplacement::reculer(int distance){
+void Deplacement::reculer(double distance){
   avancer(-distance);
 }
 
-void Deplacement::tourner_gauche(int angle){
-  // Le robot tourne à gauche autour du milieu entre les deux roues 
-  // Un peu difficle de savoir si le stylo restera effectivement immobile durant la rotation
-  // angle en degré
-  int diam = 23; //distance entre les roues en cm
-  double ang_rad = abs(angle * (1 + corr_angle)*2*M_PI/360);
-  double dist = diam * ang_rad / 2; // arc parcouru par les roues selon l'angle donné en paramètre * perimetre / (2*pi*vitesse)
-  int temps = abs(dist/vitesse) * 1000; 
-  Serial.println(temps);
-  if (angle > 0){
-    // La moteur gauche tourne vers l'arrière
-    analogWrite(in1,val);
-    analogWrite(in2,0);
-    // Le moteur droit tourne vers l'avant
-    analogWrite(in3,0);
-    analogWrite(in4,val+correction);
-    delay(temps);
-  }
-  else{
-    // de même mais dans l'autre sens
-    analogWrite(in1,0);
-    analogWrite(in2,val);
-    analogWrite(in3,val+correction);
-    analogWrite(in4,0);
-    delay(temps);
-  }
-  analogWrite(in1, 0);
-  analogWrite(in2, 0);
-  analogWrite(in3, 0);
-  analogWrite(in4, 0);
+void Deplacement::tourner_gauche(double angle){
+	int steps = distanceToStep(M_PI / 180 * fabs(angle));	// On récupère le nombre de pas correspondant à la longueur de l'arc décrit par l'angle donné
+	int sens = 1;														// et on met le sens par défaut vers la gauche.
+	if (angle < 0) {													// Si l'angle est négatif,
+		sens = -1;														// on met le sens vers la droite.
+	}
+
+	for (int i = 0; i < steps; i++) {									// On fait tous les pas à réaliser un par un :
+		stepperRight.step(sens);										// la roue droite d'abord,
+		stepperLeft.step(sens);											// la gauche ensuite.
+	}
 }
 
 void Deplacement::tourner_droite(int angle){
   tourner_gauche(-angle);
 }
 
-/*double Deplacement::calculDistance(){
+double Deplacement::calculDistance(){
 double distance;
 // Émission d'un signal de durée 10 microsecondes
 digitalWrite(trigPin, HIGH);
@@ -105,11 +74,11 @@ temps = pulseIn(echoPin, HIGH);
 // Calcul de la distance
 distance = pow(temps*0.034-h*h,0.5)/2;
 // Affichage de la distance dans le Moniteur Série
-Serial.println("Distance: ");
-Serial.println(distance);
+Serial.print("Distance: ");
+Serial.print(distance);
 Serial.println(" cm");
 return distance;
-}*/
+}
 /*void Deplacement::initOTA() {
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
