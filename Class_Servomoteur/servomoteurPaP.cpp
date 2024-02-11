@@ -1,6 +1,33 @@
+#include "servomoteur.h"
+#include "Arduino.h" 
+#include "math.h"
+#include <ESP32Servo.h>
+
+Servo myservo; //créer un objet appelé myservo à partir du module Servo
+
+//declaration des variables
+double vitesseCCW=26;//vitesse clock wise
+double vitesseCW=-26;//vitesse counter clockcwise
+double zero=0; // on défini un zéro :)
+double stop=map(zero,-100,100,0,180); //on redéfini le zéro sur la plage 0, 180 du servo
+double vitesse_adjCCW=map(vitesseCCW,-100,100,0,180);//on redéfini la vitesse CCW sur la plage 0, 180 du servo
+double vitesse_adjCW=map(vitesseCW,-100,100,0,180);//on redéfini la vitesse CCW sur la plage 0, 180 du servo
+double angle=180; //angle demandé en degrés
+double coeff= 5.9;//nb secondes par degré pour une vitesse de 26
+double temps = angle*coeff; // temps nécessaire pour tourner de l'angle défini
+int pos=0;//position du servomoteur
+void servomoteur::init()
+{
+  ESP32PWM::allocateTimer(0);
+  ESP32PWM::allocateTimer(1);
+  ESP32PWM::allocateTimer(2);
+  ESP32PWM::allocateTimer(3);
+  myservo.setPeriodHertz(50);
+  myservo.attach(A0,1000,2000);//attaché notre objet myservo au servomoteur branché sur la broche A0
+}
 
 
-void stylo_1()
+void servomoteur::stylo_1()
 {
 
   //digitalWrite(ledVertePin,HIGH);//On allume la led Verte
@@ -23,7 +50,7 @@ void stylo_1()
 
 }
 
-void stylo_2()
+void servomoteur::stylo_2()
 {
 
   //digitalWrite(ledRougePin,HIGH);//On allume la led Rouge
@@ -46,7 +73,7 @@ void stylo_2()
 
 }
 
-void non_stylo()
+void servomoteur::non_stylo()
 {
 
   //digitalWrite(ledJaunePin,HIGH);//On allume la led Jaune
