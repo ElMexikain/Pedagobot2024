@@ -4,19 +4,22 @@
 //#include "WiFi.h"
 
 
-double h = 10;
-double temps;
+float h = 10;
+float temps;
 
+const int trigPin = 11; // Trigger (emission)
+const int echoPin = 12; // Echo (réception)
 const int stepsPerRevolution	=	64 * 64 / 2;	// Nombre de pas par tour de
 const float	PERIMETER	=	M_PI * 8;
-Stepper stepperLeft = Stepper(stepsPerRevolution, 10, 12, 11, 13);	// sert à contrôler le moteur pas-à-pas de gauche, branché des broches 10 à 13
-Stepper stepperRight = Stepper(stepsPerRevolution, 2, 4, 3, 5);	 // sert à contrôler le moteur pas-à-pas de droite, branché des broches 2 à 5
+const float BRAQUAGE	=	11.3 / 2;
+Stepper stepperLeft = Stepper(stepsPerRevolution, 10, 18, 17, 21);	// sert à contrôler le moteur pas-à-pas de gauche, branché des broches 10 à 13
+Stepper stepperRight = Stepper(stepsPerRevolution, D2, D4, D3, D5);	 // sert à contrôler le moteur pas-à-pas de droite, branché des broches 5 à 8
 
 void Deplacement::init(){
   vitesse(10);
 }
 
-int Deplacement::distanceToStep(double distance) {
+int Deplacement::distanceToStep(float distance) {
 	return (int)(distance / PERIMETER * stepsPerRevolution);
 }
 
@@ -26,7 +29,7 @@ void Deplacement::vitesse(int v) {
 	stepperLeft.setSpeed(v);											// et droite prennent la même valeur de vitesse donnée.
 }
 
-void Deplacement::avancer(double distance){
+void Deplacement::avancer(float distance){
   // Le robot avance pendant la durée lui permettant de parcourir <distance> cm 
 	int steps = distanceToStep(fabs(distance));							// On convertit la distance en nombre de pas à faire;
 	int sens = 1;														// et on met le sens par défaut vers l'avant.
@@ -38,15 +41,14 @@ void Deplacement::avancer(double distance){
 		stepperRight.step(sens);										// la roue gauche d'abord,
 		stepperLeft.step(-sens);										// la droite ensuite.
 	}
-  }
 }
 
-void Deplacement::reculer(double distance){
+void Deplacement::reculer(float distance){
   avancer(-distance);
 }
 
-void Deplacement::tourner_gauche(double angle){
-	int steps = distanceToStep(M_PI / 180 * fabs(angle));	// On récupère le nombre de pas correspondant à la longueur de l'arc décrit par l'angle donné
+void Deplacement::tourner_gauche(float angle){
+	int steps = distanceToStep(M_PI / 180 * fabs(angle)* BRAQUAGE);	// On récupère le nombre de pas correspondant à la longueur de l'arc décrit par l'angle donné
 	int sens = 1;														// et on met le sens par défaut vers la gauche.
 	if (angle < 0) {													// Si l'angle est négatif,
 		sens = -1;														// on met le sens vers la droite.
@@ -58,12 +60,12 @@ void Deplacement::tourner_gauche(double angle){
 	}
 }
 
-void Deplacement::tourner_droite(int angle){
+void Deplacement::tourner_droite(float angle){
   tourner_gauche(-angle);
 }
-
-double Deplacement::calculDistance(){
-double distance;
+/*
+float Deplacement::calculDistance(){
+float distance;
 // Émission d'un signal de durée 10 microsecondes
 digitalWrite(trigPin, HIGH);
 delayMicroseconds(10);
@@ -78,7 +80,7 @@ Serial.print("Distance: ");
 Serial.print(distance);
 Serial.println(" cm");
 return distance;
-}
+}*/
 /*void Deplacement::initOTA() {
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);

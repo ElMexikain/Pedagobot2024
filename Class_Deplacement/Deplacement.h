@@ -9,13 +9,13 @@
 class Deplacement{		
 public:
         void init();
-        int distanceToStep(double distance);
-        void avancer(double distance);
-        void reculer(double distance);
-        void vitesse(int v)
-        void tourner_gauche(double angle);
-        void tourner_droite(double angle);
-        double calculDistance();
+        int distanceToStep(float distance);
+        void avancer(float distance);
+        void reculer(float distance);
+        void vitesse(int v);
+        void tourner_gauche(float angle);
+        void tourner_droite(float angle);
+        float calculDistance();
         //void iniOTA();
         void mesureDeVide();
 private:
