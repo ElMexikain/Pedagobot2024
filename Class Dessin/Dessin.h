@@ -3,15 +3,15 @@
 #include "Arduino.h" 
 #include "math.h"
 #include "Deplacement.h"
-class Dessin(){
+#include "Moteur.h"
+
+class Dessin {
     public:
-        void polygone_regulier(int côté, double longueur);
-        void pavage_carre(double longueur);
-        void pavage_heptagone(double rayon_interieur);
-        void pavage_triangle(double longueur);
-        void pavage_cercle(double rayon);
-        void pavage_triangle(int longueur, int répétitions);
-        private: 
+        void polygone_regulier(int Nbcote, float longueur);
+        void pavage_carre(float longueur, int Nbrepetitions);
+        void pavage_heptagone(float longueur);
+        void pavage_triangle(float longueur, int repetitions);
+    private: 
 
 };
 #endif
