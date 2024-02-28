@@ -1,32 +1,22 @@
 #include "Deplacement.h"
 #include "Arduino.h"
+#include "Moteur.h"
 //#include "ArduinoOTA.h"
 //#include "WiFi.h"
 
 
 float h = 10;
 float temps;
-
 const int trigPin = 11; // Trigger (emission)
 const int echoPin = 12; // Echo (réception)
 const int stepsPerRevolution	=	64 * 64 / 2;	// Nombre de pas par tour de
 const float	PERIMETER	=	M_PI * 8;
-const float BRAQUAGE	=	11.3 / 2;
-Stepper stepperLeft = Stepper(stepsPerRevolution, 10, 18, 17, 21);	// sert à contrôler le moteur pas-à-pas de gauche, branché des broches 10 à 13
-Stepper stepperRight = Stepper(stepsPerRevolution, D2, D4, D3, D5);	 // sert à contrôler le moteur pas-à-pas de droite, branché des broches 5 à 8
-
-void Deplacement::init(){
-  vitesse(10);
-}
+const float BRAQUAGE	=	10.7;
+Moteur stepperLeft = Moteur(stepsPerRevolution, D7, D9, D8, D10);	// sert à contrôler le moteur pas-à-pas de gauche, branché des broches 10 à 13
+Moteur stepperRight = Moteur(stepsPerRevolution, D2, D4, D3, D5);	 // sert à contrôler le moteur pas-à-pas de droite, branché des broches 5 à 8
 
 int Deplacement::distanceToStep(float distance) {
 	return (int)(distance / PERIMETER * stepsPerRevolution);
-}
-
-void Deplacement::vitesse(int v) {
-  // Permet d'attribuer la vitesse v aux moteurs
-	stepperRight.setSpeed(v);											// Les moteurs pas à pas gauche
-	stepperLeft.setSpeed(v);											// et droite prennent la même valeur de vitesse donnée.
 }
 
 void Deplacement::avancer(float distance){
