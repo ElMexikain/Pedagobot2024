@@ -70,40 +70,41 @@ void pavage_cercle(float rayon){
 	  avancer(2*rayon);
   }
 }
-void pavage_triangle(float longueur, int répétitions){
-	tournerDroite(60);
-	avancer(longueur);
+void pavage_triangle(float longueur, int repetitions){
+	int n= repetitions;
 	tournerGauche(60);
-	for (int i=0;i<répétitons/2;i++){
-		avancer((répétitons-i)*longueur);
-		TournerGauche(120);
+	avancer(longueur);
+	tournerDroite(60);
+	for (int i=0;i<n/2;i++){
+		avancer((n-i)*longueur);
+		TournerDroite(120);
 		avancer(i*longueur);
-		TournerGauche(120);
-		avancer((répétitions-i)*longueur);
-		if(répétitions%2 ==0 and i==n/2){
-			TournerGauche(120);
+		TournerDroite(120);
+		avancer((n-i)*longueur);
+		if(n%2 ==0 and i==n/2){
+			TournerDroite(60);
 			avancer(longueur);
 		}
 		else{
-			TournerGauche(120);
+			TournerDroite(120);
 			avancer(i*longueur);
-			TournerGauche(120);
-			avancer((répétitions-i)*longueur);
-			TournerGauche(120);
+			TournerDroite(120);
+			avancer((n-i)*longueur);
+			TournerDroite(120);
 			avancer(i*longueur);
-			TournerGauche(60);
+			TournerDroite(60);
 			avancer(longueur);
-			TournerGauche(60);
+			TournerDroite(60);
 		}
 	}
 	if (n%2==1){
-		TournerDroite(60);
-		avancer((répétitions-1)/2*longueur);
-		TournerGauche(120);
-		avancer(longueur);
-		TournerGauche(120);
-		avancer(longueur);
+		TournerGauche(60);
 	}
+	avancer((n-1)//2*longueur);
+	TournerDroite(120);
+	avancer(n*longueur);
+	TournerDroite(120);
+	avancer(n*longueur);
 }
 			
 			
