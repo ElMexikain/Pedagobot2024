@@ -71,7 +71,7 @@ void pavage_cercle(float rayon){
   }
 }
 void pavage_triangle(float longueur, int repetitions){
-	int n= repetitions;
+	int n = repetitions;
 	tourner_gauche(60);
 	avancer(longueur);
 	tourner_droite(60);
@@ -81,7 +81,7 @@ void pavage_triangle(float longueur, int repetitions){
 		avancer(i*longueur);
 		tourner_droite(120);
 		avancer((n-i)*longueur);
-		if(n%2 ==0 and i==n//2){
+		if(n%2 ==0 and i==n/2){
 			tourner_droite(60);
 			avancer(longueur);
 		}
@@ -100,7 +100,7 @@ void pavage_triangle(float longueur, int repetitions){
 	if (n%2==1){
 		tourner_gauche(60);
 	}
-	avancer((n-1)//2*longueur);
+	avancer((n-1)/2*longueur);
 	tourner_droite(120);
 	avancer(n*longueur);
 	tourner_droite(120);
