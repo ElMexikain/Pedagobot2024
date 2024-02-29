@@ -29,10 +29,10 @@ void cercle(float rayon){
 position_intermediaire();
 }
     
-void polygone_regulier(int Nbcôté, float longueur){
-    for (int i = 0; i < NbCôté; i++){									// Pour chacun des côtés,
+void polygone_regulier(int Nbcote, float longueur){
+    for (int i = 0; i < Nbcote; i++){									// Pour chacun des côtés,
       avancer(longueur);											// on avance de la taille donnée
-		  tournerDroite(360 / Nbcôté);									// et on tourne de l'angle 360° / nbCôtés.
+		  tourner_droite(360 / Nbcote);									// et on tourne de l'angle 360° / nbCôtés.
 	}
 }
 
@@ -44,7 +44,7 @@ void pavage_carre(float longueur, int Nbrepetitions){
         polygone_regulier(4,longueur);
         avancer(longueur);
       }
-      tournerDroite(90);
+      tourner_droite(90);
     }
 
   }
@@ -57,7 +57,7 @@ void pavage_heptagone(float longueur){
   for(int i=0;i<5;i++){
     polygone_regulier(7,longueur);
     avancer(longueur);
-    tournerGauche(79);
+    tourner_gauche(79);
   }
   position_intermediaire();
 }
@@ -66,44 +66,44 @@ void pavage_heptagone(float longueur){
 void pavage_cercle(float rayon){
 	for(int i=0;i<4;i++){
 	  cercle(rayon);
-	  tournerDroite(90);
+	  tourner_droite(90);
 	  avancer(2*rayon);
   }
 }
 void pavage_triangle(float longueur, int repetitions){
 	int n= repetitions;
-	tournerGauche(60);
+	tourner_gauche(60);
 	avancer(longueur);
-	tournerDroite(60);
+	tourner_droite(60);
 	for (int i=1;i<n//2+1;i++){
 		avancer((n-i)*longueur);
-		tournerDroite(120);
+		tourner_droite(120);
 		avancer(i*longueur);
-		tournerDroite(120);
+		tourner_droite(120);
 		avancer((n-i)*longueur);
 		if(n%2 ==0 and i==n//2){
-			tournerDroite(60);
+			tourner_droite(60);
 			avancer(longueur);
 		}
 		else{
-			tournerDroite(120);
+			tourner_droite(120);
 			avancer(i*longueur);
-			tournerDroite(120);
+			tourner_droite(120);
 			avancer((n-i)*longueur);
-			tournerDroite(120);
+			tourner_droite(120);
 			avancer(i*longueur);
-			tournerDroite(60);
+			tourner_droite(60);
 			avancer(longueur);
-			tournerDroite(60);
+			tourner_droite(60);
 		}
 	}
 	if (n%2==1){
-		TournerGauche(60);
+		Tourner_gauche(60);
 	}
 	avancer((n-1)//2*longueur);
-	tournerDroite(120);
+	tourner_droite(120);
 	avancer(n*longueur);
-	tournerDroite(120);
+	tourner_droite(120);
 	avancer(n*longueur);
 }
 			
