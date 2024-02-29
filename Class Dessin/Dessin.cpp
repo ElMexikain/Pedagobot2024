@@ -98,7 +98,7 @@ void pavage_triangle(float longueur, int repetitions){
 		}
 	}
 	if (n%2==1){
-		Tourner_gauche(60);
+		tourner_gauche(60);
 	}
 	avancer((n-1)//2*longueur);
 	tourner_droite(120);
