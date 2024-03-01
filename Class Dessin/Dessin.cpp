@@ -106,6 +106,12 @@ void pavage_triangle(float longueur, int repetitions){
 	tourner_droite(120);
 	avancer(n*longueur);
 }
+
+void pointe(int longueur){
+	int x = longueur;
+	if(x > 5){
+		pointe(x/3)
+	}
 			
 			
 	
