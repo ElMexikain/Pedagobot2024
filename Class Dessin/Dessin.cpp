@@ -107,11 +107,29 @@ void pavage_triangle(float longueur, int repetitions){
 	avancer(n*longueur);
 }
 
-void pointe(int longueur){
-	int x = longueur;
+void pointe(float longueur){
+	float x = longueur;
 	if(x > 5){
-		pointe(x/3)
+		pointe(x/3);
+		tourner_gauche(60);
+		pointe(x/3);
+		tourner_droite(120);
+		pointe(x/3);
+		tourner_gauche(60);
 	}
+	else{
+		avancer(x);
+	}
+}
+
+void flocon(float longueur){
+	for(int i=0;i<6;i++){
+		pointe(longueur);
+		tourner_droite(120);
+		pointe(longueur);
+		tourner_gauche(60);
+	}
+}
 			
 			
 	
