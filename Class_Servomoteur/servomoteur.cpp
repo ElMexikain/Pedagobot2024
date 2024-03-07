@@ -9,6 +9,7 @@ void servomoteur::init()
 {
   myservo.setPeriodHertz(50);
   myservo.attach(A0);// on associe la broche A0 au servomoteur
+  pos = 90;
   myservo.write(pos);
 }
 
@@ -27,6 +28,46 @@ void servomoteur::stylo_1()
       myservo.write(pos);
       delay(15);
     }  
+  }
+
+}
+
+void servomoteur::stylo_2()
+{
+  if(pos==90){ //Si aucun des stylos ne fonctionnait, on le raméne à la position du stylo 2
+    for(pos=90;pos<150;pos++){
+      myservo.write(pos);
+      delay(15);
+    }
+  }
+
+  if(pos==30){ //Si le stylo 1 fonctionnait, on le raméne à la position du stylo 2
+    for(pos=30;pos<150;pos++){
+      myservo.write(pos);
+      delay(15);
+    }  
+  }
+
+}
+
+void servomoteur::non_stylo()
+{
+  if(pos==30){ //Si le stylo 1 fonctionnait, on le remonte
+    for(pos=30;pos<90;pos++){
+      myservo.write(pos);
+      delay(15);
+    }
+  }
+
+  if(pos==150){ //Si le stylo 2 fonctionnait, on le remonte
+    for(pos=150;pos>90;pos--){
+      myservo.write(pos);
+      delay(15);
+    }  
+  }
+
+}
+
   }
 
 }
