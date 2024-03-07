@@ -9,8 +9,6 @@ void setup() {
 }
 
 void loop() {
-  test.stylo_1();
-  delay(5000);
   test.stylo_2();
   delay(5000);
   test.non_stylo();
