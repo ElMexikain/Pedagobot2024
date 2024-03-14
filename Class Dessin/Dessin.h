@@ -4,6 +4,8 @@
 #include "math.h"
 #include "Deplacement.h"
 #include "Moteur.h"
+#include "cmath"
+
 
 class Dessin {
     public:
