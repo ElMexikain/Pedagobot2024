@@ -4,6 +4,8 @@
 //#include "Servo.h"
 #include "math.h"
 #include "Moteur.h"
+#include "cmath"
+
 // Servo
 //Servo Stylo;
 //Stylo.attach(10);
@@ -105,6 +107,15 @@ void Dessin::pavage_triangle(float longueur, int repetitions){
 	(*robot).avancer(n*longueur);
 	(*robot).tourner_droite(120);
 	(*robot).avancer(n*longueur);
+}
+
+void cercle(float R,float erreur){
+	int n = 3.14/(2*erreur)**0.5;
+	float x=2*R*np.sin(3.14/n);
+	for(int i=0;i<n;i++){
+		(*robot).avancer(x);
+		(*robot).left(360/n);
+	}
 }
 			
 			
