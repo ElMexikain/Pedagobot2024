@@ -30,6 +30,27 @@ void Dessin::pavage_carre(float longueur, int Nbrepetitions){
   }
 }
 
+void Dessin::pavage_carre2(float longueur,int Nbr){
+	carre(longueur);
+	(*robot).avancer(longueur);
+	for(int i=1;i<Nbr+1;i++){
+		for(int j=0;j<4;j++){
+			creneau(longueur);
+			for(int k=0;k<i-1;k++){
+				demicarre(longueur);
+			}
+		}
+		(*robot).avancer(longueur);
+	}
+}
+
+void Dessin::carre(float longeur){
+	for(int i=0;i<3;i++){
+		(*robot).avancer(longueur);
+		(*robot).tourner_gauche(90);
+	}
+}
+
 
 void Dessin::pavage_heptagone(float longueur){
   for(int i=0;i<5;i++){
@@ -48,7 +69,7 @@ void Dessin::pavage_cercle(){
   }
 }
 
-void pointe(float longueur){
+void Dessin::pointe(float longueur){
 	float x = longueur;
 	if(x > 5){
 		pointe(x/3);
@@ -63,7 +84,7 @@ void pointe(float longueur){
 	}
 }
 
-void flocon(float longueur){
+void Dessin::flocon(float longueur){
 	for(int i=0;i<6;i++){
 		pointe(longueur);
 		(*robot).tourner_droite(120);
@@ -109,7 +130,7 @@ void Dessin::pavage_triangle(float longueur, int repetitions){
 	(*robot).avancer(n*longueur);
 }
 
-void cercle(float R,float erreur){
+void Dessin::cercle(float R,float erreur){
 	int n = 3.14/(2*erreur)**0.5;
 	float x=2*R*np.sin(3.14/n);
 	for(int i=0;i<n;i++){
