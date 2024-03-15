@@ -51,6 +51,22 @@ void Dessin::carre(float longeur){
 	}
 }
 
+void Dessin::creneau(float longueur){
+	(*robot).avancer(longueur);
+	(*robot).tourner_gauche(90);
+	(*robot).avancer(longueur);
+	(*robot).tourner_gauche(90);
+	(*robot).avancer(longueur);
+	(*robot).tourner_droite(90);
+}
+
+void Dessin::demicarre(float longueur){
+	(*robot).avancer(longueur);
+	(*robot).tourner_gauche(90);
+	(*robot).avancer(longueur);
+	(*robot).tourner_droite(90);
+}
+
 
 void Dessin::pavage_heptagone(float longueur){
   for(int i=0;i<5;i++){
