@@ -19,6 +19,10 @@ class Dessin {
         void pavage_heptagone(float longueur);
         void pavage_triangle(float longueur, int repetitions);
         void cercle(float R, float erreur);
+        void pavage_carre2(float longueur,int Nbr);
+        void carre(float longueur);
+        void creneau(float longueur);
+        void demicarre(float longueur);
     private: 
 
 };
