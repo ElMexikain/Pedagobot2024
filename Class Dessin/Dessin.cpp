@@ -44,7 +44,7 @@ void Dessin::pavage_carre2(float longueur,int Nbr){
 	}
 }
 
-void Dessin::carre(float longeur){
+void Dessin::carre(float longueur){
 	for(int i=0;i<3;i++){
 		(*robot).avancer(longueur);
 		(*robot).tourner_gauche(90);
@@ -96,7 +96,7 @@ void Dessin::pointe(float longueur){
 		(*robot).tourner_gauche(60);
 	}
 	else{
-		avancer(x);
+		(*robot).avancer(x);
 	}
 }
 
@@ -146,12 +146,12 @@ void Dessin::pavage_triangle(float longueur, int repetitions){
 	(*robot).avancer(n*longueur);
 }
 
-void Dessin::cercle(float R,float erreur){
-	int n = 3.14/(2*erreur)**0.5;
-	float x=2*R*np.sin(3.14/n);
+void Dessin::cercle(float R, float erreur){
+	int n = 3.14/pow((2*erreur),0.5);
+	float x=2*R*sin(3.14/n);
 	for(int i=0;i<n;i++){
 		(*robot).avancer(x);
-		(*robot).left(360/n);
+		(*robot).tourner_gauche(360/n);
 	}
 }
 			
