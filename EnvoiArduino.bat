@@ -1,7 +1,9 @@
 cd %HOMEPATH%\mblock-avr\temp\build
 
 IF exist CodeArduino\ ( cd CodeArduino\ && rm CodeArduino.ino && cd .. && rmdir CodeArduino\ ) 
-findstr /v "Wire.h SoftwareSerial.h" code.cpp > CodeArduino.ino 
+echo #include ^<ESP32Servo.h^> > CodeArduino.ino 
+findstr /v "Wire.h SoftwareSerial.h Servo.h" code.cpp >> CodeArduino.ino 
+
 mkdir "CodeArduino" 
 mv CodeArduino.ino CodeArduino/
 cd CodeArduino/
