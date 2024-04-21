@@ -1,15 +1,20 @@
-#include "Deplacement.h"
+#include "Robot.h"
 #include "Arduino.h"
 #include "Dessin.h"
 //#include "Servo.h"
 #include "math.h"
 #include "Moteur.h"
 #include "cmath"
+#include <ESP32Servo.h>
 
 // Servo
 //Servo Stylo;
 //Stylo.attach(10);
-Deplacement * robot = new Deplacement();
+Deplacement * robot = new Robot();
+
+void Dessin::init() {
+  (*robot).init();
+}
     
 void Dessin::polygone_regulier(int Nbcote, float longueur){
     for (int i = 0; i < Nbcote; i++){									// Pour chacun des côtés,
