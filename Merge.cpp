@@ -83,42 +83,6 @@ void non_stylo()
 
 }
 
-void stylo_2()
-{
-  if(pos==90){ //Si aucun des stylos ne fonctionnait, on le raméne à la position du stylo 2
-    for(pos=90;pos<150;pos++){
-      myservo.write(pos);
-      delay(15);
-    }
-  }
-
-  if(pos==30){ //Si le stylo 1 fonctionnait, on le raméne à la position du stylo 2
-    for(pos=30;pos<150;pos++){
-      myservo.write(pos);
-      delay(15);
-    }  
-  }
-
-}
-
-void non_stylo()
-{
-  if(pos==90){ //Si le stylo 1 fonctionnait, on le remonte
-    for(pos=90;pos<30;pos++){
-      myservo.write(pos);
-      delay(15);
-    }
-  }
-
-  if(pos==150){ //Si le stylo 2 fonctionnait, on le remonte
-    for(pos=150;pos>90;pos--){
-      myservo.write(pos);
-      delay(15);
-    }  
-  }
-}
-
-
 
 int distanceToStep(float distance) {
 	return (int)(distance / PERIMETER * stepsPerRevolution);
