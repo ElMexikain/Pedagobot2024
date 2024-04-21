@@ -2,13 +2,15 @@
 #define Dessin_h
 #include "Arduino.h" 
 #include "math.h"
-#include "Deplacement.h"
+#include "Robot.h"
 #include "Moteur.h"
 #include "cmath"
+#include <ESP32Servo.h>
 
 
 class Dessin {
     public:
+        void init();
         void polygone_regulier(int Nbcote, float longueur);
         void cercle_gauche();
         void cercle_droite();
