@@ -1,11 +1,11 @@
-#ifndef Deplacement_h
-#define Deplacement_h
+#ifndef Robot_h
+#define Robot_h
 #include "Arduino.h" 
 #include "math.h"
 #include "Moteur.h"
 #include <ESP32Servo.h>
 
-class Deplacement{		
+class Robot{		
 public:
         int distanceToStep(float distance);
         void arc_Gauche(float angle);
