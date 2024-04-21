@@ -1,4 +1,4 @@
-#include "Deplacement.h"
+#include "Robot.h"
 #include "Arduino.h"
 #include "Moteur.h"
 #include <ESP32Servo.h>
@@ -15,11 +15,11 @@ Moteur stepperRight = Moteur(stepsPerRevolution, D2, D4, D3, D5);	 // sert à co
 Servo myservo; //créer un objet appelé myservo à partir du module Servo
 int pos =90;
 
-int Deplacement::distanceToStep(float distance) {
+int Robot::distanceToStep(float distance) {
 	return (int)(distance / PERIMETER * stepsPerRevolution);
 }
 
-void Deplacement::arc_Gauche(float angle) {
+void Robot::arc_Gauche(float angle) {
   int steps = distanceToStep(M_PI / 180 * fabs(angle)* BRAQUAGE * 2);
   int sens = -1;														// et on met le sens par défaut vers l'avant.
 	if (angle < 0) {													// Si la distance est négative,
@@ -36,7 +36,7 @@ void Deplacement::arc_Gauche(float angle) {
 	}
 }
 
-void Deplacement::arc_Droite(float angle) {
+void Robot::arc_Droite(float angle) {
   int steps = distanceToStep(M_PI / 180 * fabs(angle)* BRAQUAGE * 2);
   int sens = 1;														// et on met le sens par défaut vers l'avant.
 	if (angle < 0) {													// Si la distance est négative,
@@ -53,7 +53,7 @@ void Deplacement::arc_Droite(float angle) {
 	}
 }
 
-void Deplacement::avancer(float distance){
+void Robot::avancer(float distance){
   // Le robot avance pendant la durée lui permettant de parcourir <distance> cm 
 	int steps = distanceToStep(fabs(distance));							// On convertit la distance en nombre de pas à faire;
 	int sens = 1;														// et on met le sens par défaut vers l'avant.
@@ -72,11 +72,11 @@ void Deplacement::avancer(float distance){
 	}
 }
 
-void Deplacement::reculer(float distance){
+void Robot::reculer(float distance){
   avancer(-distance);
 }
 
-void Deplacement::tourner_gauche(float angle){
+void Robot::tourner_gauche(float angle){
 	int steps = distanceToStep(M_PI / 180 * fabs(angle)* BRAQUAGE);	// On récupère le nombre de pas correspondant à la longueur de l'arc décrit par l'angle donné
 	int sens = 1;														// et on met le sens par défaut vers la gauche.
 	if (angle < 0) {													// Si l'angle est négatif,
@@ -95,11 +95,11 @@ void Deplacement::tourner_gauche(float angle){
 	}
 }
 
-void Deplacement::tourner_droite(float angle){
+void Robot::tourner_droite(float angle){
   tourner_gauche(-angle);
 }
 
-float Deplacement::calculDistance(){
+float Robot::calculDistance(){
 // Émission d'un signal de durée 10 microsecondes
 digitalWrite(trigPin, HIGH);
 delayMicroseconds(10);
@@ -119,14 +119,14 @@ Serial.print("Distance1 : "); Serial.print(distance1); Serial.print(", Distance 
 return distance;
 } 
 
-bool Deplacement::mesureDeVide(){
+bool Robot::mesureDeVide(){
   float dist = calculDistance();
   Serial.println(dist);
 return (dist>6);
 
 }
 
-void Deplacement::init()
+void Robot::init()
 {
   myservo.setPeriodHertz(50);
   myservo.attach(A0);// on associe la broche A0 au servomoteur
@@ -135,7 +135,7 @@ void Deplacement::init()
 }
 
 
-void Deplacement::stylo_1()
+void Robot::stylo_1()
 {
   if(pos==90){ //Si aucun des stylos ne fonctionnait, on le ramène à la position du stylo 1
     for(pos=90;pos>30;pos--){
@@ -153,7 +153,7 @@ void Deplacement::stylo_1()
 
 }
 
-void Deplacement::stylo_2()
+void Robot::stylo_2()
 {
   if(pos==90){ //Si aucun des stylos ne fonctionnait, on le raméne à la position du stylo 2
     for(pos=90;pos<150;pos++){
@@ -171,7 +171,7 @@ void Deplacement::stylo_2()
 
 }
 
-void Deplacement::non_stylo()
+void Robot::non_stylo()
 {
   if(pos==30){ //Si le stylo 1 fonctionnait, on le remonte
     for(pos=30;pos<90;pos++){
