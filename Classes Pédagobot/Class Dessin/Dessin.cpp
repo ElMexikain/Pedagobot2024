@@ -99,6 +99,7 @@ void Dessin::pointe(float longueur){
 		(*robot).tourner_droite(120);
 		pointe(x/3);
 		(*robot).tourner_gauche(60);
+		pointe(x/3);
 	}
 	else{
 		(*robot).avancer(x);
