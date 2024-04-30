@@ -32,6 +32,38 @@ void _loop() ;
 
 
 
+float longueur = 0;
+float temps = 0;
+float distance = 0;
+float vitesse = 0;
+float angle_rad = 0;
+float diam_C3_A8tre = 0;
+float compteur = 0;
+float temp = 0;
+float angle_degr_C3_A9 = 0;
+float pas_restants_gauche = 0;
+float direction = 0;
+float pas_actuel_gauche = 0;
+float nb_pas = 0;
+float pin1_gauche = 0;
+float pin2_gauche = 0;
+float pin3_gauche = 0;
+float pin4_gauche = 0;
+float steps = 0;
+float sens = 0;
+float pos = 0;
+float pin_servo = 0;
+float pas_actuel_droit = 0;
+float pas_restants_droit = 0;
+float pin1_droit = 0;
+float pin2_droit = 0;
+float pin3_droit = 0;
+float pin4_droit = 0;
+float pin1 = 0;
+float pin2 = 0;
+float pin3 = 0;
+float pin4 = 0;
+
 Servo servo_19;
 void init_servo(){
   pos = 90;
