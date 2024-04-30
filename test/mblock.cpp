@@ -7,9 +7,8 @@ void stylo_2();
 void non_stylo();
 void init_moteur();
 void step_gauche_N(double steps_to_move);
-void stepMotor_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4);
 void step_droite_N(double steps_to_move);
-void stepMotor_droit_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4);
+void stepMotor_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4);
 void avancer_N(double distance);
 void reculer_N(double distance);
 void Tourner_gauche_N(double angle);
@@ -188,42 +187,12 @@ void step_gauche_N(double steps_to_move){
         pas_actuel_gauche = nb_pas;
 
       }
-      pas_restants_gauche += -1;
+      pas_actuel_gauche += -1;
 
     }
-    stepMotor_droit_N_N_N_N_N(fmod(pas_actuel_gauche, 4), 10, 12, 11, 13);
-    _delay(0.03);
-
-  }
-
-}
-void stepMotor_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4){
-  if(thisStep == 0.000000){
-    digitalWrite(pin1,1);
-    digitalWrite(pin2,0);
-    digitalWrite(pin3,1);
-    digitalWrite(pin4,0);
-
-  }
-  if(thisStep == 1.000000){
-    digitalWrite(pin1,0);
-    digitalWrite(pin2,1);
-    digitalWrite(pin3,1);
-    digitalWrite(pin4,0);
-
-  }
-  if(thisStep == 2.000000){
-    digitalWrite(pin1,0);
-    digitalWrite(pin2,1);
-    digitalWrite(pin3,0);
-    digitalWrite(pin4,1);
-
-  }
-  if(thisStep == 3.000000){
-    digitalWrite(pin1,1);
-    digitalWrite(pin2,0);
-    digitalWrite(pin3,0);
-    digitalWrite(pin4,1);
+    pas_restants_gauche += -1;
+    stepMotor_N_N_N_N_N(fmod(pas_actuel_gauche, 4), 10, 12, 11, 13);
+    _delay(0.003);
 
   }
 
@@ -240,7 +209,7 @@ void step_droite_N(double steps_to_move){
     _loop();
     if(direction == 1.000000){
       if(pas_actuel_droit == nb_pas){
-        pas_actuel_gauche = 0;
+        pas_actuel_droit = 0;
 
       }
       pas_actuel_droit += 1;
@@ -250,16 +219,17 @@ void step_droite_N(double steps_to_move){
         pas_actuel_droit = nb_pas;
 
       }
-      pas_restants_droit += -1;
+      pas_actuel_droit += -1;
 
     }
-    stepMotor_droit_N_N_N_N_N(fmod(pas_actuel_droit, 4), 5, 7, 6, 8);
-    _delay(0.03);
+    pas_restants_droit += -1;
+    stepMotor_N_N_N_N_N(fmod(pas_actuel_droit, 4), 5, 7, 6, 8);
+    _delay(0.003);
 
   }
 
 }
-void stepMotor_droit_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4){
+void stepMotor_N_N_N_N_N(double thisStep, double pin1, double pin2, double pin3, double pin4){
   if(thisStep == 0.000000){
     digitalWrite(pin1,1);
     digitalWrite(pin2,0);
