@@ -1,4 +1,4 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
 #include <Arduino.h>
 #include <Wire.h>
 void init_servo();
