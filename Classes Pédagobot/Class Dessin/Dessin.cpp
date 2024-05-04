@@ -139,12 +139,14 @@ void Dessin::pavage_triangle(float longueur, int repetitions){
 			(*robot).avancer(i*longueur);
 			(*robot).tourner_droite(60);
 			(*robot).avancer(longueur);
-			(*robot).tourner_droite(60);
+			if(n%2 ==0 or i!=n/2){
+				(*robot).tourner_droite(60);
+			}
 		}
 	}
-	if (n%2==1){
-		(*robot).tourner_gauche(60);
-	}
+	//if (n%2==1){
+	//	(*robot).tourner_gauche(60);
+	//}
 	(*robot).avancer((n-1)/2*longueur);
 	(*robot).tourner_droite(120);
 	(*robot).avancer(n*longueur);
