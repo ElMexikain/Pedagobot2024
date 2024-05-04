@@ -108,7 +108,7 @@ void Dessin::pointe(float longueur, int ordre){
 
 void Dessin::flocon(float longueur,int ordre){
 	for(int i=0;i<6;i++){
-		pointe(longueur),ordre;
+		pointe(longueur,ordre);
 		(*robot).tourner_droite(120);
 		pointe(longueur,ordre);
 		(*robot).tourner_gauche(60);
