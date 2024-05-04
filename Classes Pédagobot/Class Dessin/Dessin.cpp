@@ -90,27 +90,27 @@ void Dessin::pavage_cercle(){
   }
 }
 
-void Dessin::pointe(float longueur){
-	float x = longueur;
-	if(x > 5){
-		pointe(x/3);
+void Dessin::pointe(float longueur, int ordre){
+	float x = longueur*pow(3,ordre);
+	if(x > longueur){
+		pointe(longueur,ordre-1);
 		(*robot).tourner_gauche(60);
-		pointe(x/3);
+		pointe(longueur,ordre-1);
 		(*robot).tourner_droite(120);
-		pointe(x/3);
+		pointe(longueur,ordre-1);
 		(*robot).tourner_gauche(60);
-		pointe(x/3);
+		pointe(longueur,ordre-1);
 	}
 	else{
-		(*robot).avancer(x);
+		(*robot).avancer(longueur);
 	}
 }
 
-void Dessin::flocon(float longueur){
+void Dessin::flocon(float longueur,int ordre){
 	for(int i=0;i<6;i++){
-		pointe(longueur);
+		pointe(longueur),ordre;
 		(*robot).tourner_droite(120);
-		pointe(longueur);
+		pointe(longueur,ordre);
 		(*robot).tourner_gauche(60);
 	}
 }
