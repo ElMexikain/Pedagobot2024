@@ -6,12 +6,13 @@ cd %HOMEPATH%\mblock-avr\temp\build
 echo #include ^<ESP32Servo.h^> > CodeArduino.ino
 :: Rajoute le reste du code mBlock converti en textuel
 findstr /v "SoftwareSerial.h Servo.h" code.cpp >> CodeArduino.ino
+powershell -Command "(gc CodeArduino.ino) -replace 'void _delay', 'void __delay' | Out-File -encoding ASCII CodeArduino.ino"
 powershell -Command "(gc CodeArduino.ino) -replace '_delay', 'delay' | Out-File -encoding ASCII CodeArduino.ino"
-::mkdir "CodeArduino" 
-::mv CodeArduino.ino CodeArduino/
-::cd CodeArduino/
-::arduino-cli compile -b arduino:esp32:nano_nora -v
-::arduino-cli upload -b arduino:esp32:nano_nora -v
+mkdir "CodeArduino" 
+mv CodeArduino.ino CodeArduino/
+cd CodeArduino/
+arduino-cli compile -b arduino:esp32:nano_nora -v
+arduino-cli upload -b arduino:esp32:nano_nora -v
 :: Supression des fichiers temporaires
-::rm temp*
+rm temp*
 
